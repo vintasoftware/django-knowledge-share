@@ -1,0 +1,11 @@
+appdirs==1.4.0
+cffi==1.9.1
+Django==1.10.5
+django-markdown==0.8.4
+Markdown==2.6.7
+misaka==2.1.0
+packaging==16.8
+pycparser==2.17
+pyparsing==2.1.10
+six==1.10.0
+vinta-microblog==0.1.0
