@@ -6,6 +6,6 @@ from .rss_feeds import MicroblogRssFeed
 
 urlpatterns = [
     url(r'^microblog/integrations/slack-slash/$',
-        SlackSlashWebHookView.as_view(), name='slack-slash'),
-    url(r'^microblog/feed/$', MicroblogRssFeed()),
+        SlackSlashWebHookView.as_view(), name='microblog-slack-slash'),
+    url(r'^microblog/feed/$', MicroblogRssFeed(), name='microblog-feed'),
 ]

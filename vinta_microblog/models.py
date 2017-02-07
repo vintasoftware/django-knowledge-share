@@ -6,6 +6,9 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_markdown.models import MarkdownField
 from django.utils.text import slugify
+from django.core.urlresolvers import reverse
+
+from vinta_microblog.conf import MICROBLOG_APP_NAME
 
 
 class MicroBlogCategoryBase(models.Model):
@@ -39,15 +42,12 @@ class MicroBlogPostBase(models.Model):
     )
     content = MarkdownField()
     pub_date = models.DateTimeField(verbose_name=_('date published'))
-    category = models.ManyToManyField('microblog.MicroBlogCategory')
+    category = models.ManyToManyField(MICROBLOG_APP_NAME + '.MicroBlogCategory')
     posted_on_twitter = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
         verbose_name_plural = _("posts")
-
-    def get_full_name(self):
-        return self.author.user.first_name + ' ' + self.author.user.last_name
 
     def content_to_slug(self, content):
         new_slug = re.sub('<[^<]+?>', '', misaka.html(content))
@@ -56,8 +56,8 @@ class MicroBlogPostBase(models.Model):
 
         return new_slug
 
-    def get_slug_path(self):
-        return '/lessons-learned/' + self.slug
+    def get_absolute_url(self):
+        return reverse(MICROBLOG_APP_NAME + ':microblog-post', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         if not self.id:

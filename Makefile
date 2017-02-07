@@ -40,7 +40,7 @@ coverage: ## check code coverage quickly with the default Python
 	coverage run --source vinta_microblog runtests.py tests
 	coverage report -m
 	coverage html
-	open htmlcov/index.html
+	# $(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/vinta-microblog.rst
