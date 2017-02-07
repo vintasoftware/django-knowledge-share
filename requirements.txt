@@ -1,4 +1,5 @@
 appdirs==1.4.0
+beautifulsoup4==4.5.1
 cffi==1.9.1
 Django==1.10.5
 django-markdown==0.8.4

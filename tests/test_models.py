@@ -1,25 +1,26 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""
-test_vinta-microblog
-------------
-
-Tests for `vinta-microblog` models module.
-"""
+from model_mommy import mommy
 
 from django.test import TestCase
 
-from vinta_microblog import models
+from vinta_microblog.conf import MICROBLOG_APP_NAME
 
 
-class TestVinta_microblog(TestCase):
+class MicroBlogCategoryTest(TestCase):
 
-    def setUp(self):
-        pass
+    def test_format_hashtag_category(self):
+        category = mommy.make(
+            MICROBLOG_APP_NAME + '.MicroBlogCategory',
+            name='chrome'
+        )
+        self.assertEqual(category.hashtag, '#Chrome')
 
-    def test_something(self):
-        pass
+    def test_format_hashtag_category_with_space(self):
+        category = mommy.make(
+            MICROBLOG_APP_NAME + '.MicroBlogCategory',
+            name='chrome extension'
+        )
+        self.assertEqual(category.hashtag, '#ChromeExtension')
 
-    def tearDown(self):
-        pass
+    def test_str(self):
+        category = mommy.make(MICROBLOG_APP_NAME + '.MicroBlogCategory')
+        self.assertEquals(str(category), category.name)

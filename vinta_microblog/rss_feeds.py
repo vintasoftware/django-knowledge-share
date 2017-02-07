@@ -2,7 +2,9 @@ from django.contrib.syndication.views import Feed
 from django.utils.translation import ugettext_lazy as _
 from django.apps import apps
 
-MicroBlogPost = apps.get_model('microblog', 'MicroBlogPost')
+from vinta_microblog.conf import MICROBLOG_APP_NAME
+
+MicroBlogPost = apps.get_model(MICROBLOG_APP_NAME, 'MicroBlogPost')
 
 
 class MicroblogRssFeed(Feed):
@@ -20,4 +22,4 @@ class MicroblogRssFeed(Feed):
         return item.content
 
     def item_link(self, item):
-        return item.get_slug_path()
+        return item.get_absolute_url()

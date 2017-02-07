@@ -8,7 +8,8 @@ from bs4 import BeautifulSoup
 from tapioca.exceptions import ClientError
 from tapioca_twitter import Twitter
 
-from microblog.templatetags.markdown_tags import convert_to_html
+from vinta_microblog.conf import MICROBLOG_HOST_NAME
+from vinta_microblog.templatetags.markdown_tags import convert_to_html
 
 
 logger = logging.getLogger(__name__)
@@ -45,7 +46,7 @@ def create_content(post_words, post_url, post_category):
         tweet += word
         tweet_size += word_size
 
-    fmt_tweet = '{} {}'.format(tweet, post_url)
+    fmt_tweet = '{}{}'.format(tweet, post_url)
     if category_size:
         fmt_tweet = '{} {}'.format(fmt_tweet, post_category)
     return fmt_tweet
@@ -57,17 +58,16 @@ def format_twitter_post(post):
     text_post_content = BeautifulSoup(html_post_content, "lxml").text
 
     # Getting microblog post link
-    post_slug_path = post.get_slug_path()
-    post_url = 'http://{base_url}{post_slug_path}'.format(
-        base_url=settings.DEFAULT_HOST,
-        post_slug_path=post_slug_path
-    )
+    base_url = MICROBLOG_HOST_NAME.rstrip('/')
+    post_url = post.get_absolute_url().lstrip('/')
+    full_post_url = '{}/{}'.format(base_url, post_url)
+
     post_words = text_post_content.split(' ')
     category = post.category.first()
     category_hashtag = ''
     if category:
         category_hashtag = category.hashtag
-    tweet_content = create_content(post_words, post_url, category_hashtag)
+    tweet_content = create_content(post_words, full_post_url, category_hashtag)
     return tweet_content
 
 
@@ -91,3 +91,4 @@ def post_microblog_post_on_twitter(microblog_post):
         logger.error(
             "Tried to post a microblog post on Twitter but got a ClientError, "
             "check your twitter keys.")
+        raise
