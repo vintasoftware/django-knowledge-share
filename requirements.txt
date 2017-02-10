@@ -9,4 +9,3 @@ packaging==16.8
 pycparser==2.17
 pyparsing==2.1.10
 six==1.10.0
-vinta-microblog==0.1.0

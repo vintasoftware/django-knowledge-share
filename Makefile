@@ -28,7 +28,7 @@ clean-pyc: ## remove Python file artifacts
 	find . -name '*~' -exec rm -f {} +
 
 lint: ## check style with flake8
-	flake8 vinta_microblog tests
+	flake8 knowledge_share tests
 
 test: ## run tests quickly with the default Python
 	python runtests.py tests
@@ -37,7 +37,7 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source vinta_microblog runtests.py tests
+	coverage run --source knowledge_share runtests.py tests
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html

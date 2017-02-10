@@ -1,9 +1,9 @@
-from vinta_microblog import models as microblog_abstract_models
+from knowledge_share import models as knowledge_share_abstract_models
 
 
-class MicroBlogPost(microblog_abstract_models.MicroBlogPostBase):
+class MicroBlogPost(knowledge_share_abstract_models.MicroBlogPostBase):
     pass
 
 
-class MicroBlogCategory(microblog_abstract_models.MicroBlogCategoryBase):
+class MicroBlogCategory(knowledge_share_abstract_models.MicroBlogCategoryBase):
     pass

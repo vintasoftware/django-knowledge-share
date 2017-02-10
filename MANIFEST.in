@@ -1,4 +1,4 @@
 include AUTHORS.rst
 include LICENSE
 include README.rst
-recursive-include vinta_microblog *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
+recursive-include knowledge_share *.html *.png *.gif *js *.css *jpg *jpeg *svg *py

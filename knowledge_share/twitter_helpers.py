@@ -8,8 +8,8 @@ from bs4 import BeautifulSoup
 from tapioca.exceptions import ClientError
 from tapioca_twitter import Twitter
 
-from vinta_microblog.conf import MICROBLOG_HOST_NAME
-from vinta_microblog.templatetags.microblog import convert_to_html
+from knowledge_share.conf import KNOWLEDGE_HOST_NAME
+from knowledge_share.templatetags.microblog import convert_to_html
 
 
 logger = logging.getLogger(__name__)
@@ -58,7 +58,7 @@ def format_twitter_post(post):
     text_post_content = BeautifulSoup(html_post_content, "lxml").text
 
     # Getting microblog post link
-    base_url = MICROBLOG_HOST_NAME.rstrip('/')
+    base_url = KNOWLEDGE_HOST_NAME.rstrip('/')
     post_url = post.get_absolute_url().lstrip('/')
     full_post_url = '{}/{}'.format(base_url, post_url)
 

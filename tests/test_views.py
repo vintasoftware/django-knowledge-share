@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 import responses
 
 from tests.models import MicroBlogPost
-from vinta_microblog.views import (
+from knowledge_share.views import (
     SlackSlashWebHookView,
     _normalize_and_split_data,
     _clean_category_name,
@@ -50,7 +50,7 @@ class SlackSlashWebHookViewTests(TestCase):
         response = self.client.post(self.view_url, self.post_params)
         self.assertEqual(response.status_code, 200)
 
-    @override_settings(MICROBLOG_USE_TWITTER=False)
+    @override_settings(KNOWLEDGE_USE_TWITTER=False)
     def test_post_without_categories(self):
         self.post_params['text'] = '[My blog Post]'
         response = self.client.post(self.view_url, self.post_params)

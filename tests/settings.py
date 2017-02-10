@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sites",
-    "vinta_microblog",
+    "knowledge_share",
 
     "tests",
 ]
@@ -34,8 +34,8 @@ if django.VERSION >= (1, 10):
 else:
     MIDDLEWARE_CLASSES = ()
 
-MICROBLOG_APP_NAME = 'tests'
-MICROBLOG_HOST_NAME = 'http://www.vinta.com.br'
+KNOWLEDGE_APP_NAME = 'tests'
+KNOWLEDGE_HOST_NAME = 'http://www.vinta.com.br'
 TWITTER_API_KEY = ''
 TWITTER_API_SECRET = ''
 TWITTER_ACCESS_TOKEN = ''
