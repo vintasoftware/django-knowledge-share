@@ -2,14 +2,14 @@
 Django Knowledge Share
 =============================
 
-.. image:: https://badge.fury.io/py/django-knowledge_share.svg
-    :target: https://badge.fury.io/py/django-knowledge_share
+.. image:: https://badge.fury.io/py/django-knowledge-share.svg
+    :target: https://badge.fury.io/py/django-knowledge-share
 
-.. image:: https://travis-ci.org/vintasoftware/django-knowledge_share.svg?branch=master
-    :target: https://travis-ci.org/vintasoftware/django-knowledge_share
+.. image:: https://travis-ci.org/vintasoftware/django-knowledge-share.svg?branch=master
+    :target: https://travis-ci.org/vintasoftware/django-knowledge-share
 
-.. image:: https://codecov.io/gh/vintasoftware/django-knowledge_share/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/vintasoftware/django-knowledge_share
+.. image:: https://codecov.io/gh/vintasoftware/django-knowledge-share/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/vintasoftware/django-knowledge-share
 
 Microblog app used to share quick knowledge.
 
