@@ -3,7 +3,7 @@
 language: python
 
 python:
-  - "3.6"
+  - "3.5"
 
 env:
   - TOX_ENV=py35-django-18
