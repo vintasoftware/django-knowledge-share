@@ -106,7 +106,7 @@ class SlackSlashWebHookViewTests(TestCase):
         )
         response = self.client.post(self.view_url, self.post_params)
         self.assertIn('(it worked! But twitter posting failed)',
-                      json.loads(response.content)['text'])
+                      json.loads(response.content.decode('utf-8'))['text'])
 
 
 class SlackSlashCommandHelpersTest(TestCase):
