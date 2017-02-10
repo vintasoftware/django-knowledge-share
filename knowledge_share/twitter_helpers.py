@@ -1,9 +1,9 @@
 import logging
 import re
-import urllib
 
 from django.conf import settings
 
+from six.moves.urllib.parse import quote_plus
 from bs4 import BeautifulSoup
 from tapioca.exceptions import ClientError
 from tapioca_twitter import Twitter
@@ -72,7 +72,7 @@ def format_twitter_post(post):
 
 
 def format_twitter_post_to_share(post):
-    return urllib.parse.quote_plus(format_twitter_post(post))
+    return quote_plus(format_twitter_post(post))
 
 
 def post_microblog_post_on_twitter(microblog_post):
