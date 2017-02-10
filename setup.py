@@ -42,13 +42,12 @@ if sys.argv[-1] == 'tag':
     sys.exit()
 
 readme = open('README.rst').read()
-history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='django-knowledge-share',
     version=version,
     description="""App to create a microblog for sharing knowledge.""",
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     author='Vinta Software',
     author_email='contact@vinta.com.br',
     url='https://github.com/vintasoftware/django-knowledge-share',
