@@ -1,8 +1,15 @@
-import misaka
-
 from django import template
 
+import misaka
+
+
 register = template.Library()
+
+
+@register.filter
+def format_post(post):
+    from vinta_microblog.twitter_helpers import format_twitter_post_to_share
+    return format_twitter_post_to_share(post)
 
 
 @register.filter

@@ -9,7 +9,7 @@ from tapioca.exceptions import ClientError
 from tapioca_twitter import Twitter
 
 from vinta_microblog.conf import MICROBLOG_HOST_NAME
-from vinta_microblog.templatetags.markdown_tags import convert_to_html
+from vinta_microblog.templatetags.microblog import convert_to_html
 
 
 logger = logging.getLogger(__name__)

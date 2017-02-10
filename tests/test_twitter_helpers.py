@@ -10,7 +10,6 @@ from vinta_microblog.conf import MICROBLOG_APP_NAME
 
 
 class FormatTwitterPostTests(TestCase):
-
     def test_post_format_to_post_directly(self):
         text = (
             'This is the post text http://some.url.com more text'
