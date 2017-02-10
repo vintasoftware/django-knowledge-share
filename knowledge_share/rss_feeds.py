@@ -2,9 +2,9 @@ from django.contrib.syndication.views import Feed
 from django.utils.translation import ugettext_lazy as _
 from django.apps import apps
 
-from vinta_microblog.conf import MICROBLOG_APP_NAME
+from knowledge_share.conf import KNOWLEDGE_APP_NAME
 
-MicroBlogPost = apps.get_model(MICROBLOG_APP_NAME, 'MicroBlogPost')
+MicroBlogPost = apps.get_model(KNOWLEDGE_APP_NAME, 'MicroBlogPost')
 
 
 class MicroblogRssFeed(Feed):

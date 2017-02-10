@@ -10,13 +10,13 @@ from django.views.generic import DetailView
 
 from tapioca.exceptions import ClientError
 
-from vinta_microblog.twitter_helpers import post_microblog_post_on_twitter
-from vinta_microblog.exceptions import BadRequest
-from vinta_microblog.conf import MICROBLOG_APP_NAME, MICROBLOG_USE_TWITTER
+from knowledge_share.twitter_helpers import post_microblog_post_on_twitter
+from knowledge_share.exceptions import BadRequest
+from knowledge_share.conf import KNOWLEDGE_APP_NAME, KNOWLEDGE_USE_TWITTER
 
 
-MicroBlogPost = apps.get_model(MICROBLOG_APP_NAME, 'MicroBlogPost')
-MicroBlogCategory = apps.get_model(MICROBLOG_APP_NAME, 'MicroBlogCategory')
+MicroBlogPost = apps.get_model(KNOWLEDGE_APP_NAME, 'MicroBlogPost')
+MicroBlogCategory = apps.get_model(KNOWLEDGE_APP_NAME, 'MicroBlogCategory')
 
 
 def _normalize_and_split_data(text):
@@ -104,7 +104,7 @@ class SlackSlashWebHookView(generic.View):
         new_post, created = self.get_or_create_microblogpost(params, categories,
                                                              content=content, title='')
         try:
-            if created and MICROBLOG_USE_TWITTER:
+            if created and KNOWLEDGE_USE_TWITTER:
                 post_microblog_post_on_twitter(new_post)
         except ClientError:
             twitter_error = True
@@ -120,4 +120,4 @@ class SlackSlashWebHookView(generic.View):
 
 class MicroblogPostView(DetailView):
     model = MicroBlogPost
-    template_name = MICROBLOG_APP_NAME + '/microblog_post.html'
+    template_name = KNOWLEDGE_APP_NAME + '/microblog_post.html'

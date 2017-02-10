@@ -1,29 +1,27 @@
 =============================
-Vinta Microblog
+Django Knowledge Share
 =============================
 
-.. image:: https://badge.fury.io/py/vinta-microblog.svg
-    :target: https://badge.fury.io/py/vinta-microblog
+.. image:: https://badge.fury.io/py/django-knowledge_share.svg
+    :target: https://badge.fury.io/py/django-knowledge_share
 
-.. image:: https://travis-ci.org/vintasoftware/vinta-microblog.svg?branch=master
-    :target: https://travis-ci.org/vintasoftware/vinta-microblog
+.. image:: https://travis-ci.org/vintasoftware/django-knowledge_share.svg?branch=master
+    :target: https://travis-ci.org/vintasoftware/django-knowledge_share
 
-.. image:: https://codecov.io/gh/vintasoftware/vinta-microblog/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/vintasoftware/vinta-microblog
+.. image:: https://codecov.io/gh/vintasoftware/django-knowledge_share/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/vintasoftware/django-knowledge_share
 
-Microblog app used by vinta's site.
+Microblog app used to share quick knowledge.
 
 Documentation
 -------------
 
-The full documentation is at https://vinta-microblog.readthedocs.io.
-
 Quickstart
 ----------
 
-Install Vinta Microblog::
+Install Django Knowledge Share::
 
-    pip install vinta-microblog
+    pip install django-knowledge-share
 
 Add it to your `INSTALLED_APPS`:
 
@@ -31,20 +29,20 @@ Add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'vinta_microblog.apps.VintaMicroblogConfig',
+        'knowledge_share.apps.KnowledgeShareConfig',
         ...
     )
 
-Add Vinta Microblog's URL patterns:
+Add Django Knowledge Share's URL patterns:
 
 .. code-block:: python
 
-    from vinta_microblog import urls as vinta_microblog_urls
+    from knowledge_share import urls as knowledge_share_urls
 
 
     urlpatterns = [
         ...
-        url(r'^', include(vinta_microblog_urls)),
+        url(r'^', include(knowledge_share_urls)),
         ...
     ]
 

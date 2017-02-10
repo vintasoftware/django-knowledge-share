@@ -3,9 +3,9 @@ from __future__ import unicode_literals, absolute_import
 
 from django.conf.urls import url
 
-from vinta_microblog.views import MicroblogPostView
-from vinta_microblog import urls as vinta_microblog_urls
+from knowledge_share.views import MicroblogPostView
+from knowledge_share import urls as knowledge_share_urls
 
 urlpatterns = [
     url(r'^lessons-learned/(?P<slug>[\w-]+)/$', MicroblogPostView.as_view(), name='microblog-post'),
-] + vinta_microblog_urls.urlpatterns[:2]
+] + knowledge_share_urls.urlpatterns[:2]

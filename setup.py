@@ -11,7 +11,7 @@ except ImportError:
 
 
 def get_version(*file_paths):
-    """Retrieves the version from vinta_microblog/__init__.py"""
+    """Retrieves the version from knowledge_share/__init__.py"""
     filename = os.path.join(os.path.dirname(__file__), *file_paths)
     version_file = open(filename).read()
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
@@ -21,7 +21,7 @@ def get_version(*file_paths):
     raise RuntimeError('Unable to find version string.')
 
 
-version = get_version("vinta_microblog", "__init__.py")
+version = get_version("knowledge_share", "__init__.py")
 
 
 if sys.argv[-1] == 'publish':
@@ -45,15 +45,15 @@ readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
-    name='vinta-microblog',
+    name='django-knowledge-share',
     version=version,
-    description="""Microblog app used by vinta's site.""",
+    description="""App to create a microblog for sharing knowledge.""",
     long_description=readme + '\n\n' + history,
     author='Vinta Software',
     author_email='contact@vinta.com.br',
-    url='https://github.com/vintasoftware/vinta-microblog',
+    url='https://github.com/vintasoftware/django-knowledge-share',
     packages=[
-        'vinta_microblog',
+        'knowledge_share',
     ],
     include_package_data=True,
     install_requires=[
@@ -65,7 +65,7 @@ setup(
     ],
     license="MIT",
     zip_safe=False,
-    keywords='vinta-microblog',
+    keywords='django-knowledge-share',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Framework :: Django',
