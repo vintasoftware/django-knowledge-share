@@ -42,6 +42,7 @@ class MicroBlogPostBase(models.Model):
     )
     content = MarkdownField()
     pub_date = models.DateTimeField(verbose_name=_('date published'))
+    # This should be 'categories' but keeping it for backward compatibility
     category = models.ManyToManyField(MICROBLOG_APP_NAME + '.MicroBlogCategory')
     posted_on_twitter = models.BooleanField(default=False)
 

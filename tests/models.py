@@ -1,5 +1,3 @@
-from django.db import models
-
 from vinta_microblog import models as microblog_abstract_models
 
 

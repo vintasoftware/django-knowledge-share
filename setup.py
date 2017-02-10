@@ -56,7 +56,13 @@ setup(
         'vinta_microblog',
     ],
     include_package_data=True,
-    install_requires=[],
+    install_requires=[
+        'misaka>=2.0.0,<2.2',
+        'tapioca-twitter>=0.8.2,<0.9',
+        'lxml>=3.6.0,<3.7',
+        'django-markdown>=0.8.4,<0.9',
+        'beautifulsoup4>=4.5.1,<4.6'
+    ],
     license="MIT",
     zip_safe=False,
     keywords='vinta-microblog',

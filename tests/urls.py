@@ -8,4 +8,4 @@ from vinta_microblog import urls as vinta_microblog_urls
 
 urlpatterns = [
     url(r'^lessons-learned/(?P<slug>[\w-]+)/$', MicroblogPostView.as_view(), name='microblog-post'),
-] + vinta_microblog_urls.urlpatterns
+] + vinta_microblog_urls.urlpatterns[:2]

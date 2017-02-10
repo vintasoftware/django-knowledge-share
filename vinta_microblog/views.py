@@ -43,7 +43,7 @@ class SlackSlashWebHookView(generic.View):
             if not token or token != settings.SLACK_TOKEN:
                 raise BadRequest('Invalid Slack token')
 
-            return super().dispatch(request, *args, **kwargs)
+            return super(SlackSlashWebHookView, self).dispatch(request, *args, **kwargs)
         except BadRequest as e:
             return self.bad_request(e.message)
 
@@ -69,7 +69,7 @@ class SlackSlashWebHookView(generic.View):
 
     def get_or_create_microblogpost(self, params, categories, **kwargs):
         new_post, created = MicroBlogPost.objects.get_or_create(
-            **kwargs,
+            **kwargs
         )
         if categories:
             category_post = categories.split(',')
@@ -115,4 +115,4 @@ class SlackSlashWebHookView(generic.View):
 
 class MicroblogPostView(DetailView):
     model = MicroBlogPost
-    template_name = 'vinta_microblog/microblog_post.html'
+    template_name = MICROBLOG_APP_NAME + '/microblog_post.html'

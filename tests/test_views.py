@@ -1,9 +1,10 @@
-import responses
+import json
 
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-from django.test.utils import override_settings
+
+import responses
 
 from tests.models import MicroBlogPost
 from vinta_microblog.views import (
@@ -49,6 +50,15 @@ class SlackSlashWebHookViewTests(TestCase):
         response = self.client.post(self.view_url, self.post_params)
         self.assertEqual(response.status_code, 200)
 
+    @override_settings(MICROBLOG_USE_TWITTER=False)
+    def test_post_without_categories(self):
+        self.post_params['text'] = '[My blog Post]'
+        response = self.client.post(self.view_url, self.post_params)
+        self.assertEqual(response.status_code, 200)
+        microblog_post = MicroBlogPost.objects.first()
+        self.assertEqual(microblog_post.content, 'My blog Post')
+        self.assertEqual(microblog_post.category.count(), 0)
+
     @responses.activate
     def test_post_with_valid_params_create_an_object(self):
         responses.add(
@@ -86,6 +96,18 @@ class SlackSlashWebHookViewTests(TestCase):
         category = microblog_post.category.first()
         self.assertTrue(category.name, 'category')
 
+    @responses.activate
+    def test_post_with_twitter_error(self):
+        responses.add(
+            responses.POST,
+            'https://api.twitter.com/1.1/statuses/update.json',
+            body='{"success": "created"}', status=400,
+            content_type='application/json'
+        )
+        response = self.client.post(self.view_url, self.post_params)
+        self.assertIn('(it worked! But twitter posting failed)',
+                      json.loads(response.content)['text'])
+
 
 class SlackSlashCommandHelpersTest(TestCase):
 
@@ -94,6 +116,12 @@ class SlackSlashCommandHelpersTest(TestCase):
         self.assertEqual(len(content), 2)
         self.assertEqual(content[0], 'My blog Post')
         self.assertEqual(content[1], 'category')
+
+    def test_normalize_without_category(self):
+        content = _normalize_and_split_data('[My blog Post]')
+        self.assertEqual(len(content), 2)
+        self.assertEqual(content[0], 'My blog Post')
+        self.assertEqual(content[1], '')
 
     def test_clean_category_name(self):
         category = _clean_category_name(' Category')
