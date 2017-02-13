@@ -1,4 +1,5 @@
 import json
+import mock
 
 from django.test import TestCase, override_settings
 from django.test.client import Client
@@ -8,7 +9,6 @@ import responses
 
 from tests.models import MicroBlogPost
 from knowledge_share.views import (
-    SlackSlashWebHookView,
     _normalize_and_split_data,
     _clean_category_name,
 )
@@ -18,15 +18,13 @@ from knowledge_share.views import (
     SLACK_TOKEN='1234',
 )
 class SlackSlashWebHookViewTests(TestCase):
-
     url_name = 'tests:microblog-slack-slash'
-    view = SlackSlashWebHookView
 
     def setUp(self):
         self.view_url = reverse(self.url_name)
         self.client = Client(HTTP_HOST='localtest.com')
         self.post_params = {
-            'text': '[My blog Post][category]',
+            'text': 'My blog Post [category]',
             'token': '1234',
         }
 
@@ -52,7 +50,7 @@ class SlackSlashWebHookViewTests(TestCase):
 
     @override_settings(KNOWLEDGE_USE_TWITTER=False)
     def test_post_without_categories(self):
-        self.post_params['text'] = '[My blog Post]'
+        self.post_params['text'] = 'My blog Post'
         response = self.client.post(self.view_url, self.post_params)
         self.assertEqual(response.status_code, 200)
         microblog_post = MicroBlogPost.objects.first()
@@ -96,8 +94,9 @@ class SlackSlashWebHookViewTests(TestCase):
         category = microblog_post.category.first()
         self.assertTrue(category.name, 'category')
 
+    @mock.patch('knowledge_share.twitter_helpers.logger')
     @responses.activate
-    def test_post_with_twitter_error(self):
+    def test_post_with_twitter_error(self, mocked):
         responses.add(
             responses.POST,
             'https://api.twitter.com/1.1/statuses/update.json',
@@ -105,6 +104,9 @@ class SlackSlashWebHookViewTests(TestCase):
             content_type='application/json'
         )
         response = self.client.post(self.view_url, self.post_params)
+        mocked.error.assert_called_once_with(
+            "Tried to post a microblog post on Twitter but got a ClientError,"
+            " check your twitter keys.")
         self.assertIn('(it worked! But twitter posting failed)',
                       json.loads(response.content.decode('utf-8'))['text'])
 
@@ -112,13 +114,39 @@ class SlackSlashWebHookViewTests(TestCase):
 class SlackSlashCommandHelpersTest(TestCase):
 
     def test_normalize_and_split_data(self):
-        content = _normalize_and_split_data('[My blog Post][category]')
+        content = _normalize_and_split_data('My blog Post[category]')
         self.assertEqual(len(content), 2)
         self.assertEqual(content[0], 'My blog Post')
         self.assertEqual(content[1], 'category')
 
+    def test_normalize_and_split_data_with_square_braces(self):
+        content = _normalize_and_split_data('A list is like this foo[1], awesome.')
+        self.assertEqual(len(content), 2)
+        self.assertEqual(content[0], 'A list is like this foo[1], awesome.')
+        self.assertEqual(content[1], '')
+
+    def test_normalize_and_split_data_with_square_braces_and_category(self):
+        content = _normalize_and_split_data(
+            'A list is like this foo[1][Python]')
+        self.assertEqual(len(content), 2)
+        self.assertEqual(content[0], 'A list is like this foo[1]')
+        self.assertEqual(content[1], 'Python')
+
+    def test_normalize_and_split_data_with_square_braces_and_space_category(self):
+        content = _normalize_and_split_data(
+            'A list is like this foo[1] [Python]')
+        self.assertEqual(len(content), 2)
+        self.assertEqual(content[0], 'A list is like this foo[1]')
+        self.assertEqual(content[1], 'Python')
+
+    def test_normalize_and_split_data_with_multiple_categories(self):
+        content = _normalize_and_split_data('My blog Post[Python, Django]')
+        self.assertEqual(len(content), 2)
+        self.assertEqual(content[0], 'My blog Post')
+        self.assertEqual(content[1], 'Python, Django')
+
     def test_normalize_without_category(self):
-        content = _normalize_and_split_data('[My blog Post]')
+        content = _normalize_and_split_data('My blog Post')
         self.assertEqual(len(content), 2)
         self.assertEqual(content[0], 'My blog Post')
         self.assertEqual(content[1], '')

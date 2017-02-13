@@ -20,15 +20,16 @@ MicroBlogCategory = apps.get_model(KNOWLEDGE_APP_NAME, 'MicroBlogCategory')
 
 
 def _normalize_and_split_data(text):
-    # Normalize and remove empty spaces.
-    content = re.sub('[ ](?=[^\]]*?(?:\[|$))', '', text)
-    content = content.replace('][', '][').replace('],[', '][')
-
     # Remove first and last itens and split the string into a list.
-    content = content[1:-1].split('][')
-    if len(content) == 1:
-        return content[0], ''
-    return content
+    text = text.strip()
+    last_open_sqbra = text.rfind('[')
+    if text.endswith(']') and last_open_sqbra != -1:
+        categories_str = text[last_open_sqbra + 1:-1]
+        message = text[:last_open_sqbra]
+    else:
+        categories_str = ''
+        message = text
+    return message.strip(), categories_str
 
 
 def _clean_category_name(category_name):
@@ -92,7 +93,7 @@ class SlackSlashWebHookView(generic.View):
         except ValueError:
             text = (
                 'Hey, your post failed! \n Make sure that '
-                'you used this expression: [Content*][Categories]'
+                'you used this expression: Content [Categories]'
             )
             raise BadRequest(text)
 
