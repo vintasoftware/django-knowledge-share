@@ -23,12 +23,11 @@ def _normalize_and_split_data(text):
     # Remove first and last itens and split the string into a list.
     text = text.strip()
     last_open_sqbra = text.rfind('[')
+    message = text
+    categories_str = ''
     if text.endswith(']') and last_open_sqbra != -1:
         categories_str = text[last_open_sqbra + 1:-1]
         message = text[:last_open_sqbra]
-    else:
-        categories_str = ''
-        message = text
     return message.strip(), categories_str
 
 
