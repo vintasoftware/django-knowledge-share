@@ -1,5 +1,5 @@
-from django.test import TestCase
 from django.core.urlresolvers import reverse
+from django.test import TestCase
 
 from model_mommy import mommy
 

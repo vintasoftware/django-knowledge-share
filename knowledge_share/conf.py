@@ -1,5 +1,6 @@
 from django.utils.functional import lazy
 
+
 obj = object()
 
 

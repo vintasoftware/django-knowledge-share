@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from .views import SlackSlashWebHookView, MicroblogPostView
 from .rss_feeds import MicroblogRssFeed
+from .views import MicroblogPostView, SlackSlashWebHookView
 
 
 urlpatterns = [

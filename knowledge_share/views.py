@@ -1,18 +1,16 @@
-import re
-
-from django.views import generic
-from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from django.http import JsonResponse
 from django.apps import apps
+from django.conf import settings
+from django.http import JsonResponse
+from django.utils.decorators import method_decorator
+from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView
 
 from tapioca.exceptions import ClientError
 
-from knowledge_share.twitter_helpers import post_microblog_post_on_twitter
-from knowledge_share.exceptions import BadRequest
 from knowledge_share.conf import KNOWLEDGE_APP_NAME, KNOWLEDGE_USE_TWITTER
+from knowledge_share.exceptions import BadRequest
+from knowledge_share.twitter_helpers import post_microblog_post_on_twitter
 
 
 MicroBlogPost = apps.get_model(KNOWLEDGE_APP_NAME, 'MicroBlogPost')

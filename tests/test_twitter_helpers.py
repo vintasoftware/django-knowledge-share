@@ -1,12 +1,9 @@
-from model_mommy import mommy
-
 from django.test import TestCase
 
-from knowledge_share.twitter_helpers import (
-    format_twitter_post,
-    format_twitter_post_to_share,
-)
+from model_mommy import mommy
+
 from knowledge_share.conf import KNOWLEDGE_APP_NAME
+from knowledge_share.twitter_helpers import format_twitter_post, format_twitter_post_to_share
 
 
 class FormatTwitterPostTests(TestCase):
