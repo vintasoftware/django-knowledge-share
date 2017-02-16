@@ -4,10 +4,10 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase, override_settings
 from django.test.client import Client
 
+import mock
 import responses
 from tests.models import MicroBlogPost
 
-import mock
 from knowledge_share.views import _clean_category_name, _normalize_and_split_data
 
 

@@ -46,6 +46,7 @@ class MicroBlogPostBase(models.Model):
     # This should be 'categories' but keeping it for backward compatibility
     category = models.ManyToManyField(KNOWLEDGE_APP_NAME + '.MicroBlogCategory')
     posted_on_twitter = models.BooleanField(default=False)
+    positive_rate = models.PositiveIntegerField(default=1)
 
     class Meta:
         abstract = True

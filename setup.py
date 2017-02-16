@@ -61,7 +61,8 @@ setup(
         'tapioca-twitter>=0.8.2,<0.9',
         'lxml>=3.6.0,<3.7',
         'django-markdown>=0.8.4,<0.9',
-        'beautifulsoup4>=4.5.1,<4.6'
+        'beautifulsoup4>=4.5.1,<4.6',
+        'djangorestframework>=3.5.4,<3.6'
     ],
     license="MIT",
     zip_safe=False,
