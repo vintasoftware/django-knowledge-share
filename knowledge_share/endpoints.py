@@ -11,12 +11,12 @@ from knowledge_share.serializers import MicroBlogPostSerializer
 MicroBlogPost = apps.get_model(KNOWLEDGE_APP_NAME, 'MicroBlogPost')
 
 
-class MicroBlogPostRateUpdateAPIView(UpdateAPIView):
+class MicroblogPostRateUpdateAPIView(UpdateAPIView):
     serializer_class = MicroBlogPostSerializer
     queryset = MicroBlogPost.objects.select_for_update().all()
 
     def finalize_response(self, request, response, *args, **kwargs):
-        response = super(MicroBlogPostRateUpdateAPIView, self).finalize_response(
+        response = super(MicroblogPostRateUpdateAPIView, self).finalize_response(
             request, response, *args, **kwargs)
 
         post_id = int(kwargs['pk'])
