@@ -38,7 +38,7 @@ Add it to your `INSTALLED_APPS`:
         ...
     )
 
-In your urls.py add the urls entry:
+In your urls.py add the urls entry::
 
     url(r'^', include('knowledge_share.urls', namespace='microblog')),
 
@@ -57,7 +57,7 @@ In your microblog/models.py create your models by inheriting from the abstract m
     class MicroBlogCategory(knowledge_share_abstract_models.MicroBlogCategoryBase):
         pass
 
-Then create and run your migrations:
+Then create and run your migrations::
 
     python manage.py makemigrations
     python manage.py migrate
@@ -84,7 +84,7 @@ To send a new post use ``/yourcommand This is a blog post content [Category, Ano
 Twitter Integration
 ~~~~~~~~~~~~~~~~~~~
 
-You will need to set the following settings using your twitter data:
+You will need to set the following settings using your twitter data::
 
     TWITTER_API_KEY
     TWITTER_API_SECRET
@@ -96,13 +96,13 @@ Whenever new posts are created it will be posted to twitter.
 Template tags
 ~~~~~~~~~~~~~
 
-Whenever you are showing the content of the post you should use:
+Whenever you are showing the content of the post you should use::
 
     {% load microblog %}
 
     {{ post.content|convert_to_html }}
 
-If you want to create a link with the content to be shared you can use:
+If you want to create a link with the content to be shared you can use::
 
     {% load microblog %}
 
