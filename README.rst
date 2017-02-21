@@ -113,12 +113,15 @@ If you want to create a link with the content to be shared you can use::
 RSS Feed
 ~~~~~~~~
 
-There is a RSS feed served by default at /microblog/feed/
+There is a RSS feed served by default at /microblog/feed/.
 
 Configuration
 ~~~~~~~~~~~~~
 
+The following configurations are available:
+
 .. code-block:: python
+
     # settings.py
 
     # name of the app created with your microblog's models
