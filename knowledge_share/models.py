@@ -1,12 +1,13 @@
 import datetime
 import re
-import misaka
 
-from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from django_markdown.models import MarkdownField
-from django.utils.text import slugify
 from django.core.urlresolvers import reverse
+from django.db import models
+from django.utils.text import slugify
+from django.utils.translation import ugettext_lazy as _
+
+import misaka
+from django_markdown.models import MarkdownField
 
 from knowledge_share.conf import KNOWLEDGE_APP_NAME
 
@@ -45,6 +46,7 @@ class MicroBlogPostBase(models.Model):
     # This should be 'categories' but keeping it for backward compatibility
     category = models.ManyToManyField(KNOWLEDGE_APP_NAME + '.MicroBlogCategory')
     posted_on_twitter = models.BooleanField(default=False)
+    positive_rate = models.PositiveIntegerField(default=1)
 
     class Meta:
         abstract = True

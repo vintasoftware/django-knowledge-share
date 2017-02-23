@@ -1,6 +1,6 @@
-from model_mommy import mommy
-
 from django.test import TestCase
+
+from model_mommy import mommy
 
 from knowledge_share.conf import KNOWLEDGE_APP_NAME
 

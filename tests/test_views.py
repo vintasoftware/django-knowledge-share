@@ -1,17 +1,14 @@
 import json
-import mock
 
+from django.core.urlresolvers import reverse
 from django.test import TestCase, override_settings
 from django.test.client import Client
-from django.core.urlresolvers import reverse
 
+import mock
 import responses
-
 from tests.models import MicroBlogPost
-from knowledge_share.views import (
-    _normalize_and_split_data,
-    _clean_category_name,
-)
+
+from knowledge_share.views import _clean_category_name, _normalize_and_split_data
 
 
 @override_settings(
