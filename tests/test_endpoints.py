@@ -3,8 +3,8 @@ import json
 from django.core.urlresolvers import reverse
 
 from model_mommy import mommy
-from rest_framework.test import APITestCase
 from rest_framework import status
+from rest_framework.test import APITestCase
 
 from knowledge_share.conf import KNOWLEDGE_APP_NAME
 
