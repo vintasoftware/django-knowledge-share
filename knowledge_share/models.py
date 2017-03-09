@@ -1,14 +1,16 @@
 import datetime
 import re
-import misaka
 
+import misaka
+from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 from django_markdown.models import MarkdownField
-from django.utils.text import slugify
-from django.core.urlresolvers import reverse
 
 from knowledge_share.conf import KNOWLEDGE_APP_NAME
+
+URL_REGEX_AND_SPACES = '\s+http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+\s'
 
 
 class MicroBlogCategoryBase(models.Model):
@@ -50,11 +52,14 @@ class MicroBlogPostBase(models.Model):
         abstract = True
         verbose_name_plural = _("posts")
 
-    def content_to_slug(self, content):
+    def _remove_url_from_content(self):
+        return re.sub(URL_REGEX_AND_SPACES, ' ', self.content)
+
+    def _content_to_slug(self):
+        content = self._remove_url_from_content()
         new_slug = re.sub('<[^<]+?>', '', misaka.html(content))
         new_slug = new_slug.split()
         new_slug = '-'.join(new_slug[:6])
-
         return new_slug
 
     def get_absolute_url(self):
@@ -62,6 +67,6 @@ class MicroBlogPostBase(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = slugify(self.content_to_slug(self.content))
+            self.slug = slugify(self._content_to_slug())
             self.pub_date = datetime.datetime.now()
         super(MicroBlogPostBase, self).save(*args, **kwargs)
