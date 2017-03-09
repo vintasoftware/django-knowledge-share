@@ -143,6 +143,11 @@ Running Tests
     (myenv) $ pip install tox
     (myenv) $ tox
 
+Releasing on PyPI
+-----------------
+
+We are using bumpversion https://github.com/pydanny/cookiecutter-djangopackage#releasing-on-pypi
+
 Credits
 -------
 
