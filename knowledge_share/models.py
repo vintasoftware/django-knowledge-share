@@ -10,6 +10,8 @@ from django_markdown.models import MarkdownField
 
 from knowledge_share.conf import KNOWLEDGE_APP_NAME
 
+URL_REGEX_AND_SPACES = '\s+http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+\s'
+
 
 class MicroBlogCategoryBase(models.Model):
     name = models.CharField(max_length=200)
@@ -51,8 +53,7 @@ class MicroBlogPostBase(models.Model):
         verbose_name_plural = _("posts")
 
     def _remove_url_from_content(self):
-        url_regex_and_spaces = r'\s+\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*\s+'
-        return re.sub(url_regex_and_spaces, ' ', self.content)
+        return re.sub(URL_REGEX_AND_SPACES, ' ', self.content)
 
     def _content_to_slug(self):
         content = self._remove_url_from_content()
