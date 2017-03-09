@@ -1,7 +1,5 @@
-from django import template
-
 import misaka
-
+from django import template
 
 register = template.Library()
 

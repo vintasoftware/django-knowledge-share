@@ -1,12 +1,9 @@
-from model_mommy import mommy
-
 from django.test import TestCase
 
-from knowledge_share.twitter_helpers import (
-    format_twitter_post,
-    format_twitter_post_to_share,
-)
 from knowledge_share.conf import KNOWLEDGE_APP_NAME
+from knowledge_share.twitter_helpers import (format_twitter_post,
+                                             format_twitter_post_to_share)
+from model_mommy import mommy
 
 
 class FormatTwitterPostTests(TestCase):
@@ -21,7 +18,7 @@ class FormatTwitterPostTests(TestCase):
         response = (
             'This is the post text http://some.url.com more text'
             'with more text This is the post text with more text This... '
-            'http://www.vinta.com.br/lessons-learned/this-is-the-post-text-httpsomeurlcom/'
+            'http://www.vinta.com.br/lessons-learned/this-is-the-post-text-more/'
         )
         self.assertEqual(formated, response)
 
@@ -39,7 +36,7 @@ class FormatTwitterPostTests(TestCase):
         response = (
             'This is the post text http://some.url.com more text'
             'with more text This is the post text with more... '
-            'http://www.vinta.com.br/lessons-learned/this-is-the-post-text-httpsomeurlcom/'
+            'http://www.vinta.com.br/lessons-learned/this-is-the-post-text-more/'
             ' #Chrome'
         )
         self.assertEqual(formated, response)
@@ -55,6 +52,6 @@ class FormatTwitterPostTests(TestCase):
         response = (
             'This+is+the+post+text+http%3A%2F%2Fsome.url.com+more+textwith+more+'
             'text+This+is+the+post+text+with+more+text+This...+http%3A%2F%2Fwww.'
-            'vinta.com.br%2Flessons-learned%2Fthis-is-the-post-text-httpsomeurlcom%2F'
+            'vinta.com.br%2Flessons-learned%2Fthis-is-the-post-text-more%2F'
         )
         self.assertEqual(formated, response)

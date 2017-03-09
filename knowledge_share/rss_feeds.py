@@ -1,6 +1,6 @@
+from django.apps import apps
 from django.contrib.syndication.views import Feed
 from django.utils.translation import ugettext_lazy as _
-from django.apps import apps
 
 from knowledge_share.conf import KNOWLEDGE_APP_NAME
 

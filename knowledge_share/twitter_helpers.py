@@ -1,16 +1,14 @@
 import logging
 import re
 
-from django.conf import settings
-
-from six.moves.urllib.parse import quote_plus
 from bs4 import BeautifulSoup
-from tapioca.exceptions import ClientError
-from tapioca_twitter import Twitter
+from django.conf import settings
 
 from knowledge_share.conf import KNOWLEDGE_HOST_NAME
 from knowledge_share.templatetags.microblog import convert_to_html
-
+from six.moves.urllib.parse import quote_plus
+from tapioca.exceptions import ClientError
+from tapioca_twitter import Twitter
 
 logger = logging.getLogger(__name__)
 
