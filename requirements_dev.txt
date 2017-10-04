@@ -1,4 +1,0 @@
-bumpversion==0.5.3
-flake8>=2.1.0
-isort==4.2.5
-wheel==0.29.0
