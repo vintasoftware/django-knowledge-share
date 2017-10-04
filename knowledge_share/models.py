@@ -2,6 +2,7 @@ import datetime
 import re
 
 import misaka
+import pytz
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.text import slugify
@@ -66,7 +67,13 @@ class MicroBlogPostBase(models.Model):
         return reverse(KNOWLEDGE_APP_NAME + ':microblog-post', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
+        if 'timezone' in kwargs:
+            tz = pytz.timezone(kwargs['timezone'])
+            pub_date = tz.localize(pub_date)
+        else:
+            pub_date = pytz.utc.localize(datetime.datetime.now())
+
         if not self.id:
             self.slug = slugify(self._content_to_slug())
-            self.pub_date = datetime.datetime.now()
+            self.pub_date = pub_date
         super(MicroBlogPostBase, self).save(*args, **kwargs)
