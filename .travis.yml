@@ -13,7 +13,7 @@ matrix:
   fast_finish: true
 
 install:
-  - pip install -r test_requirements.txt
+  - pip install -r ci_requirements.txt
   - pip install tox-travis
 
 script:
