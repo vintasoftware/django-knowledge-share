@@ -80,6 +80,14 @@ def post_microblog_post_on_twitter(microblog_post):
         access_token=settings.TWITTER_ACCESS_TOKEN,
         access_token_secret=settings.TWITTER_ACCESS_TOKEN_SECRET
     )
+
+    try:
+        config_obj = api.configuration().get()
+        current_length = config_obj.get('short_url_length', TWITTER_URL_SHORTENER_SIZE)
+        TWITTER_URL_SHORTENER_SIZE = current_length
+    except ClientError:
+        pass
+
     post_content = format_twitter_post(microblog_post)
     try:
         api.statuses_update().post(params={'status': post_content})
