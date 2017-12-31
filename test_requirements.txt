@@ -2,7 +2,6 @@ appdirs==1.4.0
 beautifulsoup4==4.5.1
 cffi==1.9.1
 Django==1.10.5
-django-markdown==0.8.4
 Markdown==2.6.7
 misaka==2.1.0
 packaging==16.8
@@ -15,3 +14,4 @@ bumpversion==0.5.3
 flake8>=2.1.0
 isort==4.2.5
 wheel==0.29.0
+git+git://github.com/Ge0/django_markdown.git@b3a0760#egg=django_markdown
