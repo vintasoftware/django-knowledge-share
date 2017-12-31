@@ -59,12 +59,11 @@ setup(
         'misaka>=2.0.0,<2.2',
         'tapioca-twitter>=0.8.2,<0.9',
         'lxml>=3.6.0,<3.7',
-        'django-markdown>=0.8.4,<0.9',
         'beautifulsoup4>=4.5.1,<4.6',
         'pytz>=2017.2'
     ],
     dependency_links=[
-        "git+git://github.com/Ge0/django_markdown.git@b3a0760#egg=django_markdown"
+        'https://github.com/Ge0/django_markdown/tarball/b3a0760#egg=django-markdown'
     ],
     license="MIT",
     zip_safe=False,
