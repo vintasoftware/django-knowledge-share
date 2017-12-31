@@ -1,4 +1,5 @@
 # from old requirements_test.txt
+django<2.0
 coverage==4.3.3
 mock>=1.0.1
 flake8>=2.1.0

@@ -12,7 +12,7 @@ from tapioca_twitter import Twitter
 
 logger = logging.getLogger(__name__)
 
-TWITTER_MAX_CHARACTER = 140
+TWITTER_MAX_CHARACTER = 280
 TWITTER_URL_SHORTENER_SIZE = 23
 ELLIPSIS = '... '
 URL_REGEX = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
