@@ -1,4 +1,7 @@
-from django.core.urlresolvers import reverse
+try:  # django <= 1.6
+    from django.core.urlresolvers import reverse
+except ImportError:  # from django 1.7 to django 2.0 (and more)
+    from django.urls import reverse
 from django.test import TestCase
 
 from model_mommy import mommy
