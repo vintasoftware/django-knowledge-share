@@ -12,9 +12,6 @@ python:
 matrix:
   fast_finish: true
 
-services:
-  - postgresql
-
 install:
   - pip install "Django>=1.11.19,<=2.0" # from test_requirements.txt
   - pip install -r ci_requirements.txt
