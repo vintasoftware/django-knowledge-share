@@ -1,7 +1,7 @@
 appdirs==1.4.0
 beautifulsoup4==4.5.1
 cffi==1.9.1
-Django>=1.10.5,<1.11
+django>=1.11.19
 Markdown==2.6.7
 misaka==2.1.0
 packaging==16.8
