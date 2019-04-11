@@ -4,7 +4,6 @@ language: python
 
 python:
   - "2.7"
-  - "3.3"
   - "3.4"
   - "3.5"
   - "3.6"
@@ -13,7 +12,7 @@ matrix:
   fast_finish: true
 
 install:
-  - pip install Django==1.10.5 # from test_requirements.txt
+  - pip install "Django>=1.11.19,<=2.0" # from test_requirements.txt
   - pip install -r ci_requirements.txt
   - pip install tox-travis
 
