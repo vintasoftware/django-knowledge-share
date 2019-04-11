@@ -12,7 +12,7 @@ matrix:
   fast_finish: true
 
 install:
-  - pip install "Django>=1.11.19,<=2.0" # from test_requirements.txt
+  - pip install "Django>=1.11.19,<2.2" # from test_requirements.txt
   - pip install -r ci_requirements.txt
   - pip install tox-travis
 
