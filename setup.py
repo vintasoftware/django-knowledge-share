@@ -61,7 +61,7 @@ setup(
         'lxml>=3.6.0,<3.7',
         'beautifulsoup4>=4.5.1,<4.6',
         'pytz>=2017.2',
-        'django-markdown @ git+https://github.com/Ge0/django_markdown.git@b3a07605945bfe759b4b1c9bb8dcab8deb1cf9e2#egg=django-markdown'
+        'django-markdown @ git://github.com/marycaroline/django-markdown.git#egg=django-markdown'
     ],
     license="MIT",
     zip_safe=False,
