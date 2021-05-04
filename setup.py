@@ -58,7 +58,7 @@ setup(
     install_requires=[
         'misaka>=2.0.0,<2.2',
         'tapioca-twitter>=0.8.2,<0.9',
-        'lxml>=3.6.0,<3.7',
+        'lxml>=4.5.0,<4.6.0',
         'beautifulsoup4>=4.5.1,<4.6',
         'pytz>=2017.2',
         'django-markdown @ git+https://github.com/vintasoftware/django_markdown@37f8fe7a5a91a3aab35c2b8ad34c4c7d8d462743#egg=django-markdown'
