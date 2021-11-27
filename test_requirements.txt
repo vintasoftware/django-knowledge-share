@@ -14,4 +14,4 @@ bumpversion==0.5.3
 flake8>=2.1.0
 isort==4.2.5
 wheel==0.29.0
-git+git://github.com/vintasoftware/django_markdown.git@37f8fe7a5a91a3aab35c2b8ad34c4c7d8d462743#egg=django-markdown
+git+git://github.com/vintasoftware/django_markdown.git@02c6fa050090b086b527de127b87f702de055dac#egg=django-markdown

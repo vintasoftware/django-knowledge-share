@@ -61,7 +61,7 @@ setup(
         'lxml>=4.5.0,<4.6.0',
         'beautifulsoup4>=4.8,<4.9',
         'pytz>=2017.2',
-        'django-markdown @ git+https://github.com/vintasoftware/django_markdown@37f8fe7a5a91a3aab35c2b8ad34c4c7d8d462743#egg=django-markdown'
+        'django-markdown @ git+https://github.com/vintasoftware/django_markdown@02c6fa050090b086b527de127b87f702de055dac#egg=django-markdown'
     ],
     license="MIT",
     zip_safe=False,
